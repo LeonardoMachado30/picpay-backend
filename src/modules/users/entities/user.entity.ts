@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, Index } from 'typeorm';
+import { UserType } from '../enum/user-type.enum';
 
 @Entity()
 export class User {
@@ -6,8 +7,18 @@ export class User {
   id: number;
 
   @Column()
-  name: string;
+  fullName: string;
 
   @Column()
+  @Index({ unique: true }) // ← aqui
   email: string;
+
+  @Column({ unique: true })
+  cpfCnpj: string;
+
+  @Column()
+  password: string;
+
+  @Column({ type: 'enum', enum: UserType })
+  type: UserType;
 }
