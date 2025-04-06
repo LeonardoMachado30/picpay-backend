@@ -1,6 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from './modules/users/users.module';
+import { TransactionsModule } from './modules/transactions/transactions.module';
+import { WalletsModule } from './modules/wallets/wallets.module';
 
 @Module({
   imports: [
@@ -11,10 +13,12 @@ import { UsersModule } from './modules/users/users.module';
       username: 'root',
       password: '123456',
       database: 'picpay',
-      entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: true,
+      autoLoadEntities: true,
+      synchronize: true, // use false em produção
     }),
     UsersModule,
+    TransactionsModule,
+    WalletsModule,
   ],
 })
-export class AppModule {} // <= Aqui estava faltando
+export class AppModule {}
