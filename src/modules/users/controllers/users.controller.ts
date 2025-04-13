@@ -23,7 +23,19 @@ export class UsersController {
 
   @Get(':id')
   @ApiOperation({ summary: 'Busca um usuário por ID' })
-  @ApiResponse({ status: 200, description: 'Usuário encontrado', type: User })
+  @ApiResponse({
+    status: 200,
+    description: 'Usuário encontrado',
+    type: User,
+    example: {
+      id: 1,
+      fullName: 'João Silva',
+      email: 'joao@email.com',
+      cpfCnpj: '12345678900',
+      password: '12345678',
+      type: 'common',
+    },
+  })
   @ApiResponse({ status: 404, description: 'Usuário não encontrado' })
   findOne(@Param('id') id: number): Promise<User | null> {
     return this.usersService.findOne(id);
@@ -31,7 +43,21 @@ export class UsersController {
 
   @Get()
   @ApiOperation({ summary: 'Busca todos os usuarios' })
-  @ApiResponse({ status: 200, description: 'Usuários encontrado', type: User })
+  @ApiResponse({
+    status: 200,
+    description: 'Usuários encontrado',
+    type: User,
+    example: [
+      {
+        id: 1,
+        fullName: 'João Silva',
+        email: 'joao@email.com',
+        cpfCnpj: '12345678900',
+        password: '12345678',
+        type: 'common',
+      },
+    ],
+  })
   @ApiResponse({ status: 404, description: 'Usuário não encontrado' })
   findAll(): Promise<User[]> {
     return this.usersService.findAll();
