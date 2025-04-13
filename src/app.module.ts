@@ -8,11 +8,11 @@ import { WalletsModule } from './modules/wallets/wallets.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'switchyard.proxy.rlwy.net:21907',
-      port: 3306,
+      host: 'nozomi.proxy.rlwy.net',
+      port: 47648,
       username: 'root',
-      password: '123456',
-      database: 'picpay',
+      password: 'izNpFCwYFMzGFSKBtBpuaObRTJkGrwKq',
+      database: 'railway',
       autoLoadEntities: true,
       synchronize: true, // use false em produção
     }),
